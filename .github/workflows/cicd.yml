@@ -1,0 +1,39 @@
+name: CI/CD pipeline
+
+on:
+  worflow_dispatch
+
+
+jobs:
+  
+  code:
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the Code
+        run: echo "Check for the code"
+
+  build:
+    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build the docker image
+        run: echo "Build the docker image"
+
+  test:
+    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test the pipeline
+        run: echo "Testing the piple if works properly"
+
+  deploy:
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy the project
+        run: echo "Deploy the pipeline"
+
+
+
+    
