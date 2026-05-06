@@ -13,9 +13,9 @@ jobs:
     steps:
 
       - name: Say hello to user
-        runs: echo "Hello Friends"
+        run: echo "Hello Friends"
 
       - name: Say hello to user
-        runs: echo "Hello $USER"
+        run: echo "Hello $USER"
 
 
