@@ -15,6 +15,7 @@ jobs:
 
   build:
     
+    needs: [code]
     runs-on: ubuntu-latest
     steps:
       - name: Build the docker image
@@ -22,6 +23,7 @@ jobs:
 
   test:
     
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Test the pipeline
@@ -29,6 +31,7 @@ jobs:
 
   deploy:
 
+    needs: [build,test]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy the project
