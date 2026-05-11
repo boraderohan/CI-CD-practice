@@ -1,7 +1,17 @@
 name: CI/CD pipeline
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    input:
+      environment:
+        description: This is the environment value where this workflow runs
+        default: 'dev'
+        requried: true
+        type: choice
+        options:
+          - dev
+          - prod
+          - staging
 
 
 jobs:
