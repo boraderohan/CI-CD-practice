@@ -1,20 +1,281 @@
-<h1> My portfolio Website </h1>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio of John Doe</title>
+    <title>John Doe | Portfolio</title>
+    <style>
+        :root {
+            /* Lubuntu Color Palette */
+            --lubuntu-blue: #3465a4;
+            --lubuntu-dark: #2c5585;
+            --lubuntu-light: #5c8bc6;
+            --bg-dark: #1a1b26;
+            --bg-card: rgba(255, 255, 255, 0.08);
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent: #89b4fa;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(52, 101, 164, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(137, 180, 250, 0.15) 0%, transparent 40%);
+            min-height: 100vh;
+        }
+
+        /* Animated Background Mesh */
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(125deg, #1a1b26, #24283b, #1a1b26);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glass Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, var(--lubuntu-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--lubuntu-light);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--lubuntu-light);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27), box-shadow 0.4s ease;
+            height: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Grid Layout */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        h3 {
+            color: var(--lubuntu-light);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--glass-border);
+            padding-bottom: 0.5rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        ul li::before {
+            content: "•";
+            color: var(--lubuntu-light);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        ul li:hover {
+            color: var(--text-main);
+            padding-left: 5px;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        a.link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        a.link:hover {
+            color: var(--lubuntu-light);
+            text-decoration: underline;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            font-style: italic;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .testimonial::before {
+            content: """;
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--glass-border);
+            font-family: serif;
+        }
+
+        .author {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--lubuntu-light);
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 3rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .grid-3, .grid-2 { grid-template-columns: 1fr; }
+            nav a { margin: 0 0.5rem; font-size: 0.9rem; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1 style="text-align:center;">John Doe</h1>
-        <p style="text-align:center;">Home | Projects | Blogs | Contact</p>
-    </header>
-    <h2 style="text-align:center;">Web Developer and Designer</h2>
-    <table border="1" width="100%">
-        <tr>
-            <td>
+    <div class="bg-mesh"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Rohan Borade</h1>
+            <p class="subtitle">DevOps Engineer</p>
+            <nav>
+                <a href="#linked">rohanborade1812</a>
+                <a href="#career">Jr DevOps Engineer</a>
+                <a href="#skills">Linux, Docker, Kubernetes</a>
+                <a href="#email">rohanborade18@gmail.com</a>
+                <a href="#contact">9769820045</a>
+            </nav>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid-3" id="highlights">
+            <div class="glass-card">
                 <h3>Portfolio Highlights</h3>
                 <ul>
                     <li>Responsive HTML Layout</li>
@@ -23,39 +284,61 @@
                     <li>Event Countdown Widget</li>
                     <li>Prototype Landing Pages</li>
                 </ul>
-            </td>
-            <td>
+            </div>
+
+            <div class="glass-card" id="career">
                 <h3>Career Achievements</h3>
-                <p>Frontend Developer [Intern] at XYZ<br>Headed major product redesigns resulting in a 40% increase in user engagement.<br><a href="#">View My LinkedIn Profile</a></p>
-                <h3>Community Involvement</h3>
-                <p>Active participant in local and online developer forums. Regularly contribute to web development blogs and GitHub projects.<br><a href="#">Visit My GitHub</a></p>
-            </td>
-            <td>
+                <p><strong>Frontend Developer [Intern]</strong> at XYZ</p>
+                <p>Headed major product redesigns resulting in a 40% increase in user engagement.</p>
+                <a href="#" class="link">View My LinkedIn Profile &rarr;</a>
+                
+                <h3 style="margin-top: 1.5rem;">Community Involvement</h3>
+                <p>Active participant in local and online developer forums. Regularly contribute to web development blogs and GitHub projects.</p>
+                <a href="#" class="link">Visit My GitHub &rarr;</a>
+            </div>
+
+            <div class="glass-card" id="skills">
                 <h3>Academic Qualifications</h3>
-                <p>B.Tech (Computer Science) from ABC University</p>
-                <p>Specializations:</p>
+                <p><strong>B.Tech (Computer Science)</strong> from ABC University</p>
+                <p><strong>Specializations:</strong></p>
                 <ul>
                     <li>Systems Analysis</li>
                     <li>Advanced JavaScript Techniques</li>
                     <li>Web Accessibility Standards</li>
-                    <li>Performance Optimization in Web Applications</li>
+                    <li>Performance Optimization</li>
                     <li>Cloud Computing Infrastructure</li>
                     <li>Security in Web Applications</li>
                     <li>Advanced Algorithms</li>
                 </ul>
-            </td>
-        </tr>
-    </table>
-    <h3>Peer Reviews</h3>
-    <table border="1" width="100%">
-        <tr>
-            <td>John Doe consistently delivers high-quality, innovative solutions that exceed project expectations. - Steven, Project Lead</td>
-            <td>John Doe is known for his precise attention to detail and his ability to mentor younger developers. - David, UI Designer</td>
-            <td>John's approach to problem-solving has been instrumental in our success. - Sarah, Frontend Developer</td>
-        </tr>
-    </table>
-    <footer style="text-align:center;">
-        © [2025] All rights reserved by John Doe
+            </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <div class="grid-3" id="reviews">
+            <div class="glass-card testimonial">
+                <p>Rohan consistently delivers high-quality, innovative solutions that exceed project expectations.</p>
+                <span class="author">- Steven, Project Lead</span>
+            </div>
+            <div class="glass-card testimonial">
+                <p>Rohan Borade is known for his precise attention to detail and his ability to mentor younger developers.</p>
+                <span class="author">- David, UI Designer</span>
+            </div>
+            <div class="glass-card testimonial">
+                <p>Rohan's approach to problem-solving has been instrumental in our success.</p>
+                <span class="author">- Sarah, Frontend Developer</span>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="glass-card" id="contact" style="text-align: center; max-width: 600px; margin: 0 auto 3rem auto;">
+            <h3>Get In Touch</h3>
+            <p>Open to new opportunities and collaborations.</p>
+            <a href="mailto:rohanborade18@gmail.com" class="link" style="font-size: 1.2rem; padding: 10px 20px; border: 1px solid var(--lubuntu-light); border-radius: 8px; display: inline-block; margin-top: 1rem;">rohanborade18@gmail.com</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 All rights reserved by Rohan Borade. Designed with passion and creativity.
     </footer>
 </body>
 </html>
